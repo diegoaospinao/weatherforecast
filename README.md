@@ -72,6 +72,6 @@ az acr repository list --name [container-registry]
 
 ```sh
 kubectl get nodes
-helm install myhelmtest oci://[container-registry]/helm/weatherforecast-api --version 0.1.0
+helm install weatherforecast-api oci://[container-registry]/helm/weatherforecast-api --version 0.1.0
 kubectl get services
 ```
