@@ -41,6 +41,26 @@ kubectl get services
 
 ## helm
 
+### create chart
+
+```sh
+helm create weatherforecast-api
+```
+
+### package chart
+
+```sh
+helm package .
+```
+
+### push chart to registry
+
+```sh
+helm registry login [container-registry] --username [user-name] --password [password]
+helm push weatherforecast-api-0.1.0.tgz oci://[container-registry]/helm
+az acr repository list --name [container-registry]
+```
+
 ### create aks cluster
 
 ```sh
@@ -52,23 +72,11 @@ az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
 
 ```sh
 kubectl get nodes
-helm create weatherforecast-api
 helm install weatherforecast-api weatherforecast-api/
 kubectl get services
 ```
 
 ### deploy cluster to aks (using helm from registry)
-
-#### push chart to registry
-
-```sh
-helm package .
-helm registry login [container-registry] --username [user-name] --password [password]
-helm push weatherforecast-api-0.1.0.tgz oci://[container-registry]/helm
-az acr repository list --name [container-registry]
-```
-
-#### install chart from registry
 
 ```sh
 kubectl get nodes
